@@ -1,6 +1,5 @@
 /* SELECTORS */
 
-import { func } from "prop-types";
 
 export const getAllTrips = ({trips}) => trips;
 
@@ -14,8 +13,22 @@ export const getFilteredTrips = ({trips, filters}) => {
   }
 
   // TODO - filter by duration
+  if(filters.duration){
+    output = output.filter(trip => trip.days >= filters.duration.from && trip.days <= filters.duration.to);
+  }
 
   // TODO - filter by tags
+  if(filters.tags && filters.tags.length > 0){
+    output = output.filter(trip => {
+      let isOk = true;
+      for(let tag of trip.tags){
+        if(!filters.tags.includes(tag))
+          isOk = false;
+      }
+      return isOk;
+
+    });
+  }
 
   // TODO - sort by cost descending (most expensive goes first)
 
