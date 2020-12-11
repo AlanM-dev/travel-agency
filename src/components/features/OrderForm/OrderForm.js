@@ -5,11 +5,11 @@ import pricing from '../../../data/pricing.json';
 import OrderOption from '../OrderOption/OrderOption.js';
 
 
-const orderForm = ({tripCost, options}) => (
+const orderForm = ({tripCost, options, setOrderOption}) => (
   <Grid>
     <h1>Trip options</h1>
     <Row>
-      {pricing.map((option) => <Col key={option.id} md={4}><OrderOption currentValue={options[option.id]} {...option}/></Col>)}
+      {pricing.map((option) => <Col key={option.id} md={4}><OrderOption setOrderOption={setOrderOption} currentValue={options[option.id]} {...option}/></Col>)}
       <Col xs={12}>
         <OrderSummary tripCost={tripCost} options={options} />
       </Col>
